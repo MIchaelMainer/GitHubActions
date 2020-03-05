@@ -22,9 +22,9 @@ try {
     }
     var data = {
         "title": "PR Title",
-        "head": `${process.env.github.ref}`,
+        "head": `${process.env.GITHUB_REF}`,
         "base": "master",
-        "body": `This pull request was automatically created by the GitHub Action workflow **${process.env.github.workflow}**.`,
+        "body": `This pull request was automatically created by the GitHub Action workflow **${process.env.GITHUB_WORKFLOW}**.`,
         "draft": false
     }
     console.log(`The url is: ${url2}`);
