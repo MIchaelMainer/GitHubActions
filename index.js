@@ -28,8 +28,8 @@ try {
         "draft": false
     }
     console.log(`The url is: ${url2}`);
-    console.log(`The headers: ${headers}`);
-    console.log(`The data: ${data}`);
+    console.log(`The headers: ${JSON.stringify(headers)}`);
+    console.log(`The data: ${JSON.stringify(data)}`);
 
     fetch(url, { method: 'POST', headers: headers, body: data })
         .then((res) => {
