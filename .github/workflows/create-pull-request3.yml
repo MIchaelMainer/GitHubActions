@@ -1,0 +1,41 @@
+# This is a basic workflow to help you get started with Actions
+
+name: "create pull request 3"
+
+# Controls when the action will run. Triggers the workflow on push
+# events but only for branches with the following branch spec: "beta/pipelinebuild/*"
+on:
+  push:
+    branches:
+      - "alpha/*"  # Support wildcard matching
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  # This workflow contains a single job called "create-pull-request"
+  create-pull-request:
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+    # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+    - uses: actions/checkout@v2
+    
+    # Create a pull request
+    # https://developer.github.com/v3/pulls/#create-a-pull-request
+    - name: Create PR using the GitHub REST API via hub
+      shell: bash
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        MESSAGE: 'Generated \n\n @MIchaelMainer'
+        REVIEWERS: 'peombwa,MIchaelMainer'
+        ASSIGNEDTO: 'MIchaelMainer'
+        LABELS: 'generated'
+      run: |
+        curl -fsSL https://github.com/github/hub/raw/master/script/get | bash -s 2.14.1
+        bin/hub pull-request -b master -h $GITHUB_REF -m $MESSAGE -r $REVIEWERS -a $ASSIGNEDTO -l $LABELS
+    # TODO: Add pull request reviewers
+    # https://developer.github.com/v3/pulls/review_requests/#create-a-review-request
+
+    # TODO: Optional. Assign the pull request. Because PRs are issues.
+    # https://developer.github.com/v3/issues/assignees/#add-assignees-to-an-issue
