@@ -29,7 +29,7 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         MESSAGE_TITLE: "Generated models and request builders using Typewriter"
         MESSAGE_BODY: "This pull request was automatically created by the GitHub Action workflow **$GITHUB_WORKFLOW**. \n\n The commit hash was: _$GITHUB_SHA_. \n\n **Important** Check for unexpected deletions or changes in this PR."
-        REVIEWERS: "peombwa,MIchaelMainer"
+        REVIEWERS: "MIchaelMainer"
         ASSIGNEDTO: "MIchaelMainer"
         LABELS: "generated"
       run: |
