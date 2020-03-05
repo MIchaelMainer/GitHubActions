@@ -15,7 +15,8 @@ try {
     const url = `https://api.github.com/repos/${core.getInput('repo')}/pulls`;
     console.log(`The url is: ${url}`);
 
-
+    const url2 = `https://api.github.com/repos/${process.env.GITHUB_REPOSITORY}/pulls`
+    console.log(`The url is: ${url2}`);
 } catch (error) {
     core.setFailed(error.message);
 }
