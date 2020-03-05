@@ -41,6 +41,13 @@ try {
             // Do something with the returned data.
         });
 
+    fetch('https://api.github.com/repos/MIchaelMainer/GitHubActions/pulls')
+        .then(response => response.json())
+        .then(data => {
+            console.log('Calling the PR api:');
+            console.log(data);
+        });
+
 } catch (error) {
-    core.setFailed(error.message);
+    core.setFailed(`error message: ${error.message}`);
 }
