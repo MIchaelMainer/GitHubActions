@@ -60,16 +60,18 @@ try {
             body: JSON.stringify(data)
         };
         const response = await fetch(url3, settings);
+        console.log('Sent request');
         if (!response.ok) throw Error(response.message);
         try {
             const data = await response.json();
+            console.log(`data: ${JSON.stringify(data)}`);
             return data;
         } catch (err) {
             throw err;
         }
     };
 
-    console.log(`Response: ${JSON.stringify(getResponse)}`)
+    console.log(`Response: ${JSON.stringify(getResponse)}`);
 
 } catch (error) {
     core.setFailed(`error message: ${error.message}`);
