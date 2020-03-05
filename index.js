@@ -15,10 +15,11 @@ try {
     const url = `https://api.github.com/repos/${core.getInput('repo')}/pulls`;
     console.log(`The url is: ${url}`);
 
-    const url2 = `https://api.github.com/repos/${process.env.GITHUB_REPOSITORY}/pulls`
+    const url2 = `https://api.github.com/repos/${process.env.GITHUB_REPOSITORY}/pulls`;
     var headers = {
         "Content-Type": "application/json",
-        "authorization": `Bearer ${core.getInput('repo-token')}`
+        "authorization": `Bearer ${core.getInput('repo-token')}`,
+        "Accept": "application/json"
     }
     var data = {
         "title": "PR Title",
@@ -47,6 +48,28 @@ try {
             console.log('Calling the PR api:');
             console.log(data);
         });
+
+
+    getResponse = async () => {
+
+        const url3 = `https://api.github.com/repos/${process.env.GITHUB_REPOSITORY}/pulls`;
+
+        const settings = {
+            method: 'POST',
+            headers: headers,
+            body: JSON.stringify(data)
+        };
+        const response = await fetch(url3, settings);
+        if (!response.ok) throw Error(response.message);
+        try {
+            const data = await response.json();
+            return data;
+        } catch (err) {
+            throw err;
+        }
+    };
+
+    console.log(`Response: ${JSON.stringify(getResponse)}`)
 
 } catch (error) {
     core.setFailed(`error message: ${error.message}`);
