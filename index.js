@@ -18,7 +18,7 @@ try {
     const url2 = `https://api.github.com/repos/${process.env.GITHUB_REPOSITORY}/pulls`
     var headers = {
         "Content-Type": "application/json",
-        "authorization": `Bearer ${process.env.secrets.GITHUB_TOKEN}`
+        "authorization": `Bearer ${core.getInput('repo-token')}`
     }
     var data = {
         "title": "PR Title",
