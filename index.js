@@ -16,7 +16,28 @@ try {
     console.log(`The url is: ${url}`);
 
     const url2 = `https://api.github.com/repos/${process.env.GITHUB_REPOSITORY}/pulls`
+    var headers = {
+        "Content-Type": "application/json",
+        "authorization": `Bearer ${process.env.secrets.GITHUB_TOKEN}`
+    }
+    var data = {
+        "title": "PR Title",
+        "head": `${process.env.github.ref}`,
+        "base": "master",
+        "body": `This pull request was automatically created by the GitHub Action workflow **${process.env.github.workflow}**.`,
+        "draft": false
+    }
     console.log(`The url is: ${url2}`);
+
+    fetch(url, { method: 'POST', headers: headers, body: data })
+        .then((res) => {
+            return res.json()
+        })
+        .then((json) => {
+            console.log(json);
+            // Do something with the returned data.
+        });
+
 } catch (error) {
     core.setFailed(error.message);
 }

@@ -1,4 +1,8 @@
-on: [push]
+#on: [push]
+on:
+  push:
+    branches:
+      - "beta/*"  # Support wildcard matching
 
 jobs:
   hello_world_job:
