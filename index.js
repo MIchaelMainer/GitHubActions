@@ -33,6 +33,7 @@ try {
 
     fetch(url, { method: 'POST', headers: headers, body: data })
         .then((res) => {
+            console.log(`The headers: ${JSON.stringify(res.headers)}`);
             return res.json()
         })
         .then((json) => {
