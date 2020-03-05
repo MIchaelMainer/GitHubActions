@@ -71,7 +71,9 @@ try {
         }
     };
 
-    console.log(`Response: ${JSON.stringify(getResponse)}`);
+    const result = getResponse();
+
+    console.log(`Response: ${JSON.stringify(result)}`);
 
 } catch (error) {
     core.setFailed(`error message: ${error.message}`);
