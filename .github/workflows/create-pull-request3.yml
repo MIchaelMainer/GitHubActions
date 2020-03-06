@@ -27,11 +27,11 @@ jobs:
       shell: bash
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        MESSAGE_TITLE: Generated models and request builders using Typewriter
-        MESSAGE_BODY: This pull request was automatically created by the GitHub Action workflow **$GITHUB_WORKFLOW**. \n\n The commit hash is _$GITHUB_SHA_. \n\n **Important** Check for unexpected deletions or changes in this PR.
+        MESSAGE_TITLE: "Generated models and request builders using Typewriter"
+        MESSAGE_BODY: "This pull request was automatically created by the GitHub Action workflow **$GITHUB_WORKFLOW**. \n\n The commit hash is _$GITHUB_SHA_. \n\n **Important** Check for unexpected deletions or changes in this PR."
         REVIEWERS: MIchaelMainer
         ASSIGNEDTO: MIchaelMainer
         LABELS: generated
       run: |
         curl -fsSL https://github.com/github/hub/raw/master/script/get | bash -s 2.14.1
-        bin/hub pull-request -b master -h $GITHUB_REF -m $MESSAGE_TITLE -m $MESSAGE_BODY -r $REVIEWERS -a $ASSIGNEDTO -l $LABELS
+        bin/hub pull-request -b master -h "$GITHUB_REF" -m "$MESSAGE_TITLE" -m "$MESSAGE_BODY" -r "$REVIEWERS" -a "$ASSIGNEDTO" -l "$LABELS"
