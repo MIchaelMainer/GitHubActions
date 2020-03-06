@@ -28,7 +28,7 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         MESSAGE_TITLE: Generated models and request builders using Typewriter
-        MESSAGE_BODY: "This pull request was automatically created by the GitHub Action workflow **${github.workflow}**. \n\n The commit hash is _${github.sha}_. \n\n **Important** Check for unexpected deletions or changes in this PR."
+        MESSAGE_BODY: "This pull request was automatically created by the GitHub Action workflow **${github.workflow}**. \n\n The commit hash is _${github.sha}_. \n\n **Important** Check for unexpected deletions or changes in this PR. "
         REVIEWERS: MIchaelMainer
         ASSIGNEDTO: MIchaelMainer
         LABELS: generated
